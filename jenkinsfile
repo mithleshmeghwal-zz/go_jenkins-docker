@@ -2,8 +2,33 @@ pipeline {
 	agent { 
 		docker { image 'golang' } 
 	}
+	environment {
+		AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id)
+		AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+	}
 	stages {
 		stage('build') {
+			steps {
+				sh 'go version'
+				echo AWS_ACCESS_KEY_ID
+			}
+		}
+		stage('test') {
+			steps {
+				sh 'go version'
+			}
+		}
+		stage('deploy-staging') {
+			steps {
+				sh 'go version'
+			}
+		}
+		stage('Sanity check') {
+            steps {
+                input "Does the staging environment look ok?"
+            }
+        }
+		stage('deploy-production') {
 			steps {
 				sh 'go version'
 			}
