@@ -1,7 +1,5 @@
 pipeline {
-	agent { 
-		docker { image 'golang' } 
-	}
+	agent none
 	environment {
 		AWS_ACCESS_KEY_ID = 'jenkins-aws-secret-key-id'
 	}
