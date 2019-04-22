@@ -7,27 +7,40 @@ pipeline {
 	}
 	stages {
 		stage('build') {
+			agent { 
+				docker { image 'golang' } 
+			}		
 			steps {
 				sh 'go version'
 				echo AWS_ACCESS_KEY_ID
 			}
 		}
 		stage('test') {
+			agent { 
+				docker { image 'golang' } 
+			}		
 			steps {
 				sh 'go version'
 			}
 		}
 		stage('deploy-staging') {
+			agent { 
+				docker { image 'golang' } 
+			}		
 			steps {
 				sh 'go version'
 			}
 		}
 		stage('Sanity check') {
-            steps {
+			agent none
+			steps {
                 input "Does the staging environment look ok?"
             }
         }
 		stage('deploy-production') {
+			agent { 
+				docker { image 'golang' } 
+			}		
 			steps {
 				sh 'go version'
 			}
